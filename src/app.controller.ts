@@ -6,10 +6,15 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(@Req() req: Request): string {
-    console.log(req)
+  getHello(): string {
     return this.appService.getHello()
   }
+
+  // @Get()
+  // getHello(@Req() req: Request): string {
+  //   console.log(req)
+  //   return this.appService.getHello()
+  // }
 
   // @Get('/he*lo')
   // getHello2(): string {
