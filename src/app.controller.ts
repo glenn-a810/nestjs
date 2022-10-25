@@ -1,19 +1,23 @@
 // import { Request } from 'express'
-import { Controller, Get, Param, Query, Redirect } from '@nestjs/common'
+import { Controller, Delete, Get, Param, Query, Redirect } from '@nestjs/common'
 import { AppService } from './app.service'
 // import { UsersService } from './users/users.service'
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
-
-  @Get('redirect/docs')
-  @Redirect('https://docs.nestjs.com', 302)
-  getDocs(@Query('version') version) {
-    if (version && version === '5') {
-      return { url: 'https://docs.nestjs.com/v5/' }
-    }
+  @Delete(':userId/memo/:memoId')
+  deleteUserMemo(@Param() params: { [key: string]: string }) {
+    return `userId: ${params.userId}, memoId: ${params.memoId}`
   }
+
+  // @Get('redirect/docs')
+  // @Redirect('https://docs.nestjs.com', 302)
+  // getDocs(@Query('version') version) {
+  //   if (version && version === '5') {
+  //     return { url: 'https://docs.nestjs.com/v5/' }
+  //   }
+  // }
 
   // @Redirect('https://nestjs.com', 301)
   // @Get(':id')
