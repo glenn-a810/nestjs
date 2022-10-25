@@ -1,5 +1,5 @@
 // import { Request } from 'express'
-import { Controller, Delete, Get, Param, Query, Redirect } from '@nestjs/common'
+import { Controller, Delete, Param } from '@nestjs/common'
 import { AppService } from './app.service'
 // import { UsersService } from './users/users.service'
 
@@ -7,9 +7,15 @@ import { AppService } from './app.service'
 export class AppController {
   constructor(private readonly appService: AppService) {}
   @Delete(':userId/memo/:memoId')
-  deleteUserMemo(@Param() params: { [key: string]: string }) {
-    return `userId: ${params.userId}, memoId: ${params.memoId}`
+  deleteUserMemo(
+    @Param('userId') userId: string,
+    @Param('memoId') memoId: string
+  ) {
+    return `userId: ${userId}, memoId: ${memoId}`
   }
+  // deleteUserMemo(@Param() params: { [key: string]: string }) {
+  //   return `userId: ${params.userId}, memoId: ${params.memoId}`
+  // }
 
   // @Get('redirect/docs')
   // @Redirect('https://docs.nestjs.com', 302)
